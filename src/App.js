@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
-console.log('api key is: ', process.env.REACT_APP_API_KEY)
+const key = process.env.REACT_APP_API_KEY
 
 function App() {
   const [weather, setWeather] = useState('');
 
   useEffect(() => {
-    axios.get(`http://localhost:3001/weather`)
+    axios.get(`http://api.openweathermap.org/data/2.5/weather?q=singapore&appid=${key}`)
     .then(response => {
       console.log(response.data)
-      const weather = response.data.current.weather_descriptions
+      const weather = response.data.weather[0].description
       setWeather(weather)
     })
     .catch(e => {
-      console.log('error in fetching data!')
+      console.log(e)
     })
   }, [])
 
