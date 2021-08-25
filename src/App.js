@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import Header from './components/header'
 import axios from 'axios'
 
 const key = process.env.REACT_APP_API_KEY
@@ -20,6 +21,7 @@ function App() {
 
   return (
     <div>
+      <Header />
       <h1>Hello, world!</h1>
       <p>Singapore's weather right now: {weather}</p>
     </div>
