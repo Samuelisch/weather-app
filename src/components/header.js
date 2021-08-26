@@ -1,10 +1,11 @@
 import React from 'react'
 import Form from './form'
 
-const Header = () => {
+const Header = ({formResponse}) => {
   return (
     <div className="header">
-      <Form />
+      <div className="logo"></div>
+      <Form clickHandler={formResponse} />
     </div>
   )
 }

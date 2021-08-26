@@ -1,29 +1,36 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import Header from './components/header'
+import Info from './components/info'
 import axios from 'axios'
 
 const key = process.env.REACT_APP_API_KEY
 
 function App() {
-  const [weather, setWeather] = useState('');
+  const [info, setInfo] = useState('');
 
-  useEffect(() => {
-    axios.get(`http://api.openweathermap.org/data/2.5/weather?q=singapore&appid=${key}`)
+  const getWeather = (city) => {
+    axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}`)
     .then(response => {
       console.log(response.data)
-      const weather = response.data.weather[0].description
-      setWeather(weather)
+      const info = response.data
+      setInfo(info)
     })
     .catch(e => {
       console.log(e)
     })
-  }, [])
+  }
+
+  const clickHandler = (e) => {
+    e.preventDefault();
+    const city = document.querySelector('.search').value;
+    console.log(city);
+    getWeather(city)
+  }
 
   return (
     <div>
-      <Header />
-      <h1>Hello, world!</h1>
-      <p>Singapore's weather right now: {weather}</p>
+      <Header formResponse={clickHandler} />
+      <Info info={info} />
     </div>
   );
 }
