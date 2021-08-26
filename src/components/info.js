@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
+import React from 'react'
 
 const Info = ({ info }) => {
   if (!info) {
@@ -16,18 +15,23 @@ const Info = ({ info }) => {
   const iconSrc = `http://openweathermap.org/img/wn/${weather.icon}@2x.png`
 
   return (
-    <div>
-      <div className="city">
-        <h2>City:</h2>
-        <p><b>{location}</b></p>
-      </div>
-      <div className="weather-info">
-        <h3>Weather:</h3>
-        <img src={iconSrc} width="100px"></img>
-        <p>{weather.description}</p>
-      </div>
-      <div className="temp-info">
+    <div className="main-container">
+      <div className="current">
+        <h2>{location}</h2>
+        <p>{weather.main}</p>
         <p>{temp}&#176;C</p>
+      </div>
+      <div className="forecast-day-container">
+        <div className="forecast now">
+          <p><b>Now</b></p>
+          <img src={iconSrc} width="50px" alt="weather icon"></img>
+          <p>{temp}&#176;C</p>
+        </div>
+      </div>
+      <div>
+        {/*
+        add details on current weather here
+        */}
       </div>
     </div>
   )

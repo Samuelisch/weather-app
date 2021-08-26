@@ -45,3 +45,16 @@ form input {
 form button {
   border-radius: 5px;
 }
+
+.main-container {
+  padding: 20px;
+  border: 1px solid green;
+}
+
+.current {
+  border: 1px solid red;
+}
+
+.forecast-day-container {
+  border: 1px solid blue;
+}

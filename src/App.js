@@ -11,8 +11,8 @@ function App() {
   const getWeather = (city) => {
     axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}`)
     .then(response => {
-      console.log(response.data)
       const info = response.data
+      console.log(info)
       setInfo(info)
     })
     .catch(e => {
@@ -23,7 +23,6 @@ function App() {
   const clickHandler = (e) => {
     e.preventDefault();
     const city = document.querySelector('.search').value;
-    console.log(city);
     getWeather(city)
   }
 
