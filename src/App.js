@@ -1,23 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import Header from './components/header'
+import Info from './components/info'
+import axios from 'axios'
+
+const key = process.env.REACT_APP_API_KEY
 
 function App() {
+  const [info, setInfo] = useState('');
+
+  const getWeather = (city) => {
+    axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}`)
+    .then(response => {
+      const info = response.data
+      console.log(info)
+      setInfo(info)
+    })
+    .catch(e => {
+      console.log(e)
+    })
+  }
+
+  const clickHandler = (e) => {
+    e.preventDefault();
+    const city = document.querySelector('.search').value;
+    getWeather(city)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Header formResponse={clickHandler} />
+      <Info info={info} />
     </div>
   );
 }
