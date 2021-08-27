@@ -20,15 +20,14 @@ function App() {
     })
   }
 
-  const clickHandler = (e) => {
-    e.preventDefault();
+  const searchHandler = () => {
     const city = document.querySelector('.search').value;
     getWeather(city)
   }
 
   return (
     <div>
-      <Header formResponse={clickHandler} />
+      <Header formResponse={searchHandler} />
       <Info info={info} />
     </div>
   );
